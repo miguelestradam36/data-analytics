@@ -7,12 +7,15 @@ class SqLiteManager():
     database_ = '' #database file location
     connection = ''
     cursor = ''
+    dataframe_ = ''
+
+    student.sort_values(by=['Score'], ascending=True)
 
     #------------------------
     # Methods
     #------------------------
     
-    def __init__(self):
+    def __init__(self, database:str=""):
         """
         Function that initializes class
         ---
@@ -20,6 +23,11 @@ class SqLiteManager():
         Params: No arguments/parameters
         """
         print('Starting SqLite services...')
+        if database != "":
+            print('connecting to database...')
+            self.connection = self.sqlite3.connect(database)
+            self.cursor = self.connection.cursor()
+            print('connection to database started...')
 
     @property
     def database(self):
@@ -47,6 +55,26 @@ class SqLiteManager():
             self.connection = self.sqlite3.connect(self.database)
             self.cursor = self.connection.cursor()
             print('connection to database started...')
+        except Exception as error:
+            print("\nERROR: {}\n".format(error))
+
+    @property
+    def dataframe(self):
+        """
+        Getter method
+        ---
+        Objective: returns database path location.
+        Params: No arguments/parameters
+        """
+        return self.dataframe_
+
+    @dataframe.setter
+    def dataframe(self, script:str="SELECT * FROM Invoices"):
+        """
+
+        """
+        try:
+            self.dataframe_ = self.pandas.read_sql_query("SELECT * from surveys", self.connection)
         except Exception as error:
             print("\nERROR: {}\n".format(error))
 
