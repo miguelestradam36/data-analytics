@@ -1,11 +1,7 @@
-##
-class SQLConnection:
-    def __init__():
-    
-    def connect():
-
-    def __del__():
-        
+## Making sure dependencias are on the sytem
+from scripts_module.setup import SetUpManager
+os_handler = SetUpManager()
+os_handler.requirements_location = os_handler.os.path.join(os_handler.os.path.dirname(__file__), 'config/list.txt')
 ##
 
 
