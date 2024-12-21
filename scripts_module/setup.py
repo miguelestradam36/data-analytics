@@ -75,6 +75,7 @@ class SetUpManager():
                 print('Installing module {}...'.format(module))
                 try:
                     self.os.system('pip install {} --quiet'.format(module))
+                    return True
                 except Exception as error:
                     print("\nERROR: {}\n".format(error))
                     return False

@@ -3,14 +3,6 @@ class SqLiteManager():
     sqlite3 = __import__('sqlite3') #sqlite3 module as attribute
     pandas = __import__('pandas') #pandas module as attribute
 
-    #normal attributes
-    database_ = '' #database file location
-    connection = ''
-    cursor = ''
-    dataframe_ = ''
-
-    student.sort_values(by=['Score'], ascending=True)
-
     #------------------------
     # Methods
     #------------------------
@@ -69,12 +61,12 @@ class SqLiteManager():
         return self.dataframe_
 
     @dataframe.setter
-    def dataframe(self, script:str="SELECT * FROM Invoices"):
+    def dataframe(self, script:str):
         """
 
         """
         try:
-            self.dataframe_ = self.pandas.read_sql_query("SELECT * from surveys", self.connection)
+            self.dataframe_ = self.pandas.read_sql_query(script, self.connection)
         except Exception as error:
             print("\nERROR: {}\n".format(error))
 
