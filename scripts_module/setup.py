@@ -5,10 +5,27 @@ class SetUpManager():
 
     #Normal attributes
     requirements_location_ = '' #requirements file location
+    required_modules = '' #modules saved in yaml structure
 
     #------------------------
     # Methods
     #------------------------
+
+    def __init__(self):
+        """
+        Construction method
+        ---
+        Params: No arguments/parameters
+        Objective: Make sure yaml is available in order to read YAML file
+        """
+        try:
+            self.yaml = __import__('yaml')
+            print('Checking {} module into environment...'.format('yaml'))
+            print('module {} confirmed on environment'.format('yaml'))
+        except:
+            print('Installing module {}...'.format('pyyaml'))
+            self.os.system('pip install {} --quiet'.format('pyyaml'))
+            self.yaml = __import__('yaml')
 
     @property
     def requirements_location(self):
@@ -34,14 +51,13 @@ class SetUpManager():
         print('Checking system...')
         self.requirements_location_ = file_path
 
-        with open(self.requirements_location, 'r') as file:
-            modules = file.readlines()
-        
-        for module in modules:
-            module = module.rstrip()
-            self.check_module(module=module)
+        with open(self.requirements_location_, 'r') as file:
+            self.required_modules = self.yaml.safe_load(file)
 
-    def check_module(self, module:str)->bool:
+        if (self.check_module()):
+            print("Environment up to date!")
+
+    def check_module(self)->bool:
         """
         Class Method
         ---
@@ -50,15 +66,20 @@ class SetUpManager():
             param -> module: module to be checked
             param -> module: string
         """
-        try:
-            __import__(module)
-            print('Checking {} module into environment...'.format(module))
-            print('module {} confirmed on environment'.format(module))
-            return True
-        except:
-            print('Installing module {}...'.format(module))
-            self.os.system('pip install {} --quiet'.format(module))
-            return False
+        for module in self.required_modules['python']['global']['modules']:
+            try:
+                print('Checking {} module into environment...'.format(module))
+                __import__(module)
+                print('module {} confirmed on environment'.format(module))
+            except:
+                print('Installing module {}...'.format(module))
+                try:
+                    self.os.system('pip install {} --quiet'.format(module))
+                except Exception as error:
+                    print("\nERROR: {}\n".format(error))
+                    return False
+
+        return True
     
     def __del__(self):
         print("Finished setting up dependencies...\n")

@@ -1,9 +1,6 @@
 python:
   global:
     modules:
-      standard:
-        - import: pandas
-          install: pandas
-      test:
-        - import: pytest
-          install: pytest
+      - pandas
+      - sqlite3
+      - pytest
