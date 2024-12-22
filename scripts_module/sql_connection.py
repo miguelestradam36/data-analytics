@@ -1,7 +1,10 @@
 class SqLiteManager():
+    
     #module as attribute to facilitate imports
     sqlite3 = __import__('sqlite3') #sqlite3 module as attribute
     pandas = __import__('pandas') #pandas module as attribute
+    logging = __import__('logging')
+    sys = __import__('sys')
 
     #------------------------
     # Methods
@@ -95,6 +98,21 @@ class SqLiteManager():
         finally:
             if self.save_changes():
                 print('commited action...')
+            else:
+                raise Exception
+
+    def save_in_excel(self, output:str)->None:
+        """
+        Class method
+        ---
+        Output: boolean value returned
+        Params: No arguments/parameters
+        Objective: Changes into SqLite database have to be commited in order to be saved.  
+        """
+        try:
+            self.dataframe_.to_excel(output)
+        except Exception as error:
+            print("\nERROR: {}\n".format(error))
 
     def save_changes(self)->bool:
         """

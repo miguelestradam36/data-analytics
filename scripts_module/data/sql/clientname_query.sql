@@ -1,0 +1,1 @@
+SELECT Clients.ClientName, Clients.ClientType, Clients.ClientSize FROM Clients GROUP BY Clients.ClientSize ORDER BY Clients.ClientType;

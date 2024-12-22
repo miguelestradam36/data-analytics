@@ -10,7 +10,7 @@ sqlite_ = SqLiteManager(database="scripts_module/data/CarSalesData.db")
 ## -- Starting the connection to the database --
 
 if __name__ == "__main__":
-    sqlite_.dataframe = "SELECT Clients.ClientName, Clients.ClientType, Clients.ClientSize FROM Clients GROUP BY Clients.ClientSize ORDER BY Clients.ClientType"
-    sqlite_.run_query(script="SELECT Clients.ClientName, Clients.ClientType, Clients.ClientSize FROM Clients GROUP BY Clients.ClientSize ORDER BY Clients.ClientType")
+    sqlite_.dataframe = "SELECT * FROM Invoices"
+    sqlite_.run_query(script="SELECT * FROM Invoices")
     print(sqlite_.dataframe_)
     
