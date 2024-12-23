@@ -1,0 +1,7 @@
+INFO:scripts_module.sql_connection:DATABASE PATH: scripts_module/data/CarSalesData.db
+DEBUG:scripts_module.sql_connection:Connection to database established
+DEBUG:scripts_module.sql_connection:SQL LINE: SELECT * FROM Invoices EXECUTED IN DATABASE
+DEBUG:scripts_module.sql_connection:QUERY EXECUTED AND DATA SAVED ON A PANDAS DATAFRAME
+DEBUG:scripts_module.sql_connection:QUERY SAVED IN FILE: output/output.xlsx
+INFO:scripts_module.sql_connection:SCRIPT COMMITED IN DATABASE
+DEBUG:scripts_module.sql_connection:DELETED OBJECT RESPONSABLE TO THE CONNECTION TO THE DATABASE
