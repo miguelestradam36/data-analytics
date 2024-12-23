@@ -106,6 +106,7 @@ class SqLiteManager():
                 else:
                     raise Exception
                 #finish: saving changes
+                
             #finish: pandas or sqlite
 
         except Exception as error:
@@ -120,7 +121,13 @@ class SqLiteManager():
         Objective: Changes into SqLite database have to be commited in order to be saved.  
         """
         try:
-            self.dataframe_.to_excel(output)
+            # writing to Excel
+            datatoexcel = self.pandas.ExcelWriter(output)
+            # write DataFrame to excel
+            self.dataframe_.to_excel(datatoexcel, index=False)
+            # save the excel
+            datatoexcel.close()
+            print("Excel file created...")
         except Exception as error:
             print("\nERROR: {}\n".format(error))
 

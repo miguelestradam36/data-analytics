@@ -4,3 +4,4 @@ python:
       - pandas
       - sqlite3
       - pytest
+      - openpyxl
