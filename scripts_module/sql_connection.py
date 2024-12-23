@@ -1,5 +1,5 @@
 class SqLiteManager():
-    
+
     #module as attribute to facilitate imports
     sqlite3 = __import__('sqlite3') #sqlite3 module as attribute
     pandas = __import__('pandas') #pandas module as attribute
@@ -73,7 +73,7 @@ class SqLiteManager():
         except Exception as error:
             print("\nERROR: {}\n".format(error))
 
-    def run_query(self, from_file:bool=False, script:str="SELECT * FROM Invoices")->None:
+    def run_query(self, from_file:bool=False, pandas_dataframe:bool=False, script:str="SELECT * FROM Invoices")->None:
         """
         Setter method
         ---
@@ -88,18 +88,28 @@ class SqLiteManager():
             param -> db_path -> default: False
         """
         try:
+            #change variable content if the sql is on a file
             if from_file:
                 with open(script, 'r') as sql_file:
                     script = sql_file.read()
-            self.cursor.execute(script)
-            print('\n',self.cursor.fetchall(),'\n')
+            #finish: reading sql file
+
+            #Decide wether to execute with pandas or sqlite
+            if pandas_dataframe:
+                self.dataframe = script
+            else:  
+                self.cursor.execute(script)
+                print('\n',self.cursor.fetchall(),'\n')
+                #Saving changes
+                if self.save_changes():
+                    print('commited action...')
+                else:
+                    raise Exception
+                #finish: saving changes
+            #finish: pandas or sqlite
+
         except Exception as error:
             print("\nERROR: {}\n".format(error))
-        finally:
-            if self.save_changes():
-                print('commited action...')
-            else:
-                raise Exception
 
     def save_in_excel(self, output:str)->None:
         """
@@ -137,7 +147,8 @@ class SqLiteManager():
         Params: No arguments/parameters
         Objective: In this case, the changes done to the database will be automatically commited and the connection closed.
         """
-
-        self.save_changes()
-
-        self.cursor.close()
+        try:
+            self.save_changes()
+            self.cursor.close()
+        except Exception as error:
+            print("\nERROR: {}\n".format(error))
