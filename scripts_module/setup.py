@@ -21,7 +21,7 @@ class SetUpManager():
         """
         self.logger = self.logging.getLogger(__name__)
         import time
-        self.logging.basicConfig(filename='logs/os_{}'.format(time.time()), encoding='utf-8', level=self.logging.DEBUG)
+        self.logging.basicConfig(filename='logs/os_{}.log'.format(time.time()), encoding='utf-8', level=self.logging.DEBUG)
         try:
             self.yaml = __import__('yaml')
             print('Checking {} module into environment...'.format('yaml'))
