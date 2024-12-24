@@ -18,8 +18,6 @@ class SqLiteManager():
         Params: No arguments/parameters
         """
         self.logger = self.logging.getLogger(__name__)
-        import time
-        self.logging.basicConfig(filename='logs/sql_{}'.format(time.time()), encoding='utf-8', level=self.logging.DEBUG)
 
         print('Starting SqLite services...')
 

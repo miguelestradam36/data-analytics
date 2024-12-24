@@ -1,3 +1,11 @@
+INFO:scripts_module.setup:YAML already on the system
+DEBUG:scripts_module.setup:READING REQUIREMENTS FROM: C:\Users\miguelestradam36\OneDrive - Estudiantes ITCR\Escritorio\Estudios Independientes\Python\Data\config/info.yaml
+DEBUG:scripts_module.setup:REQUIREMENTS OBTAINED
+DEBUG:scripts_module.setup:MODULE pandas ALREADY ON FILE
+DEBUG:scripts_module.setup:MODULE sqlite3 ALREADY ON FILE
+DEBUG:scripts_module.setup:MODULE pytest ALREADY ON FILE
+DEBUG:scripts_module.setup:MODULE openpyxl ALREADY ON FILE
+DEBUG:scripts_module.setup:ALL REQUIREMENTS ARE NOW ON THE SYSTEM
 INFO:scripts_module.sql_connection:DATABASE PATH: scripts_module/data/CarSalesData.db
 DEBUG:scripts_module.sql_connection:Connection to database established
 DEBUG:scripts_module.sql_connection:SQL LINE: SELECT * FROM Invoices EXECUTED IN DATABASE

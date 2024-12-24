@@ -1,3 +1,9 @@
+## Avoid python Cache
+import sys
+
+sys.dont_write_bytecode = True
+## Finished the section to avoid python Cache
+
 ## -- Making sure dependencias are on the sytem --
 from scripts_module.setup import SetUpManager
 os_handler = SetUpManager()
@@ -11,6 +17,6 @@ sqlite_ = SqLiteManager(database="scripts_module/data/CarSalesData.db")
 ## -- Starting the connection to the database --
 
 if __name__ == "__main__":
-    sqlite_.run_query( from_file=False, pandas_dataframe=True, script="SELECT * FROM Invoices")
+    sqlite_.run_query(from_file=False, pandas_dataframe=True, script="SELECT * FROM Invoices")
     sqlite_.save_in_excel(output="output/output.xlsx")
     del sqlite_
