@@ -5,3 +5,4 @@ python:
       - sqlite3
       - pytest
       - openpyxl
+      - matplotlib

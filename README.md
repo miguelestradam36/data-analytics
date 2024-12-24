@@ -24,3 +24,7 @@ In this case the MAKEFILE has been programmed with the intention og being able t
 ### Save the data you require 
 
 Save the data of your query in an excel file with the name of your choosing
+
+## Find more information on the documentation of this project
+
+You can find the documentation here: [Documentation](docs/README.md)

@@ -3,22 +3,18 @@
 ##############################################################################################
 
 current_dir := $(realpath .)
-APP_PATH = ${current_dir}/app/src/main.py
+APP_PATH = ${current_dir}/main.py
 BUILD_TEST_PATH = ${current_dir}/app/tests/build.py
 
 ##############################################################################################
-# Jupyter Commands
+# Commands
 ##############################################################################################
 
-.PHONY: local-jupyter
-local-jupyter: ## Create pyvenv
-	@echo Local Jupyter...
-	@jupyter nbconvert --to notebook --execute notebooks/reports.ipynb --output output/reports.ipynb
-	@echo.
-
-##############################################################################################
-# Python Commands
-##############################################################################################
+.PHONY: pytest-tests
+pytest-tests: ## Create pyvenv
+	@echo Running python main code...
+	@python -m pytest tests/
+	@echo Finished running the tests...
 
 .PHONY: create-venv 
 create-venv: ## Create pyvenv

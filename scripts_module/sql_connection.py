@@ -165,6 +165,9 @@ class SqLiteManager():
             print("\nERROR: {}\n".format(error))
         return False
 
+    def print_graphic(self, x_axis:str, y_axis:str, kind:str)->None:
+        x = 0
+
     def __del__(self):
         """
         Deletion method, this is done automatically once all the tasks have been executed
