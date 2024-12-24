@@ -20,5 +20,5 @@ if __name__ == "__main__":
     sqlite_.run_query(from_file=False, pandas_dataframe=True, script="SELECT * FROM Invoices")
     sqlite_.save_in_excel(output="output/output.xlsx")
     import matplotlib.pyplot as plt
-    sqlite_.dataframe_.plot(x='InvoiceNumber', y='DeliveryCharge', kind="bar").show()
+    sqlite_.dataframe_.plot(x='InvoiceNumber', y='DeliveryCharge', kind="bar")
     del sqlite_
