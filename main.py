@@ -18,7 +18,7 @@ sqlite_ = SqLiteManager(database="scripts_module/data/CarSalesData.db")
 
 if __name__ == "__main__":
     sqlite_.run_query(from_file=False, pandas_dataframe=True, script="SELECT * FROM Invoices")
+    sqlite_.dataframe_ = sqlite_.dataframe_.sort_values(['DeliveryCharge'],ascending=True)
     sqlite_.save_in_excel(output="output/output.xlsx")
-    import matplotlib.pyplot as plt
-    sqlite_.dataframe_.plot(x='InvoiceNumber', y='DeliveryCharge', kind="bar")
+    sqlite_.print_graphic(title="No title selected",x_axis="ClientID", y_axis="DeliveryCharge", kind="bar")
     del sqlite_

@@ -66,7 +66,7 @@ class SqLiteManager():
         """
         Getter method
         ---
-        Objective: returns database path location.
+        Objective: returns panda dataframe.
         Params: No arguments/parameters
         """
         return self.dataframe_
@@ -74,7 +74,10 @@ class SqLiteManager():
     @dataframe.setter
     def dataframe(self, script:str):
         """
-
+        Setter method
+        ---
+        Objective: returns panda dataframe.
+        Params: script which is a string with a sql query
         """
         try:
             self.dataframe_ = self.pandas.read_sql_query(script, self.connection)
@@ -85,7 +88,7 @@ class SqLiteManager():
 
     def run_query(self, from_file:bool=False, pandas_dataframe:bool=False, script:str="SELECT * FROM Invoices")->None:
         """
-        Setter method
+        Method
         ---
         Objective: Called to define the connection to SqLite connection
         Params:
@@ -131,7 +134,7 @@ class SqLiteManager():
         Class method
         ---
         Output: boolean value returned
-        Params: No arguments/parameters
+        Params: Output string
         Objective: Changes into SqLite database have to be commited in order to be saved.  
         """
         try:
@@ -165,8 +168,32 @@ class SqLiteManager():
             print("\nERROR: {}\n".format(error))
         return False
 
-    def print_graphic(self, x_axis:str, y_axis:str, kind:str)->None:
-        x = 0
+    def print_graphic(self, x_axis:str, y_axis:str, kind:str, title:str="No title selected")->None:
+        """
+        Method
+        ---
+        Objective: Called to define the connection to SqLite connection
+        Params:
+            param -> db_path -> description: 
+            param -> db_path -> type: string
+            param -> db_path -> default: 'SHOW TABLES;'
+
+            param -> db_path -> description: 
+            param -> db_path -> type: bool
+            param -> db_path -> default: False
+        """
+        try:
+            import time
+            import matplotlib.pyplot as plt
+            self.dataframe_.plot(x=x_axis, y=y_axis, kind=kind)
+            figure = plt.gcf()
+            figure.savefig('plot_{}.png'.format(time.time()))
+            plt.show()
+            plt.draw()
+            self.logger.debug("AN IMAGE HAS BEEN DONE WITH THE RESULTS OF YOUR QUERY. Y_AXIS: {} AND X_AXIS: {}".format(y_axis, x_axis))
+        except Exception as error:
+            self.logger.error("EXECUTION ERROR-> {} and message: {}".format(error.__class__.__name__, error))
+            print("\nERROR: {}\n".format(error))
 
     def __del__(self):
         """

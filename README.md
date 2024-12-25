@@ -16,15 +16,6 @@ This code is not designed for an online database (For example, a mysql database 
 All information, like the connection and queries are `logged` in a file for future reference.
 There is going to be a new file for each execution done :paperclip:
 
-### Automate some code execution with a MAKEFILE
-
-Automate some command line execution using MAKEFILE.
-In this case the MAKEFILE has been programmed with the intention og being able to execute this code in a virtual environment (Not the OS of your computer `in case you use the MAKEFILE, if you do not, the code will be executed on your OS`)
-
 ### Save the data you require 
 
 Save the data of your query in an excel file with the name of your choosing
-
-## Find more information on the documentation of this project
-
-You can find the documentation here: [Documentation](docs/README.md)
